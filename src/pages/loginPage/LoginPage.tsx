@@ -1,5 +1,9 @@
 import s from "./LoginPage.module.scss";
 
 export const LoginPage = () => {
-  return <div className={s.LoginPage}></div>;
+  return <section className={s.LoginPage}>
+    <div className={"container"}>
+      Login Page
+    </div>
+  </section>;
 };
