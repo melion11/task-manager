@@ -1,16 +1,12 @@
-import { Outlet } from 'react-router-dom'
-import { Header } from '../ui/Header/Header'
+import { Outlet } from "react-router-dom";
 
-
-
+import { Header } from "../ui/Header/Header";
 
 export const Layout = () => {
-
-
-    return (
-        <>
-            <Header/>
-            <Outlet />
-        </>
-    )
-}
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
+};
