@@ -1,0 +1,23 @@
+.LoginForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginWrapper {
+
+}
+
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  & > * {
+    width: 100%;
+  }
+
+}
+
+.loginTitle {
+  text-align: center;
+}

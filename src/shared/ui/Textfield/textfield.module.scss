@@ -1,0 +1,86 @@
+button {
+  all: unset;
+}
+
+.rootBlock {
+  position: relative;
+}
+
+.field {
+  width: 100%;
+  padding: 6px 12px;
+
+  font-family: inherit;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+
+  background: transparent;
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+  outline: 0;
+
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: var(--color-dark-100);
+  }
+
+  &:not(:disabled):hover {
+    background: var(--color-dark-700);
+  }
+
+  &:focus-visible {
+    border-color: var(--color-info-700);
+    outline: 1px solid var(--color-info-700);
+  }
+
+  &:not(:disabled):active {
+    border: 1px solid var(--color-light-100);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  &.error {
+    color: var(--color-danger-300);
+    border-color: var(--color-danger-300);
+  }
+}
+
+.password {
+  cursor: pointer;
+  position: absolute;
+  top: 6px;
+  right: 12px;
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+}
+
+.hasSearchIcon {
+  padding: 6px 45px;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+
+  &.disabled {
+    opacity: 0.7;
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-dark-100);
+
+  &.disabled {
+    opacity: 0.7;
+  }
+}
