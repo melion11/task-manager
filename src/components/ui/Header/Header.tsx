@@ -1,12 +1,24 @@
-import logoWebp from "../../../shared/assets/images/logo.webp";
-import logoPng from "../../../shared/assets/images/logo.png";
 import { Link } from "react-router-dom";
+
+import logoPng from "../../../shared/assets/images/logo.png";
+import logoWebp from "../../../shared/assets/images/logo.webp";
+
 import s from "./Header.module.scss";
+
+import { useGetLogoutMutation, useMeQuery } from "@/features";
+import { Logout } from "@/shared/assets";
 import { Button } from "@/shared/ui";
 import { Typography } from "@/shared/ui/Typography";
 
-
 export const Header = () => {
+  const { data } = useMeQuery();
+
+  const [logout] = useGetLogoutMutation();
+
+  const getLogoutHandler = () => {
+    logout();
+  };
+
   return (
     <header>
       <div className={"container"}>
@@ -19,7 +31,13 @@ export const Header = () => {
             </picture>
             <Typography variant={"h1"}>Task manager</Typography>
           </Link>
-          <Button variant={"primary"}>Sign In</Button>
+          {data?.resultCode === 0 ? (
+            <Button onClick={getLogoutHandler} variant={"secondary"}>
+              <Logout /> Log Out
+            </Button>
+          ) : (
+            <Button variant={"primary"}>Sign In</Button>
+          )}
         </div>
       </div>
     </header>

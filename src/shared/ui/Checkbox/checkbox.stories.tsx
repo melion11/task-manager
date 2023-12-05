@@ -1,19 +1,19 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from "@storybook/react";
 
-import { CustomCheckbox } from './checkbox.tsx'
+import { CustomCheckbox } from "./checkbox.tsx";
 
 const meta = {
-  title: 'shared/CustomCheckbox',
+  title: "shared/CustomCheckbox",
   component: CustomCheckbox,
-  tags: ['autodocs'],
-} satisfies Meta<typeof CustomCheckbox>
+  tags: ["autodocs"],
+} satisfies Meta<typeof CustomCheckbox>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Checkbox',
+    label: "Checkbox",
     disabled: false,
   },
-}
+};

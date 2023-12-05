@@ -1,26 +1,42 @@
-import { CheckboxProps, CustomCheckbox } from "@/shared/ui/Checkbox";
-import { FieldValues, useController, UseControllerProps } from "react-hook-form";
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from "react-hook-form";
 
-type Props<T extends FieldValues> =
-  Omit<UseControllerProps<T>, "rules" | "defaultValue" | "disabled">
-  & Omit<CheckboxProps, "checked" | "onCheckedChange">
+import { CheckboxProps, CustomCheckbox } from "@/shared/ui/Checkbox";
+
+type Props<T extends FieldValues> = Omit<
+  UseControllerProps<T>,
+  "rules" | "defaultValue" | "disabled"
+> &
+  Omit<CheckboxProps, "checked" | "onCheckedChange">;
 
 export const ControlledCheckbox = <T extends FieldValues>({
-                                                            name,
-                                                            control,
-                                                            disabled,
-                                                            shouldUnregister,
-                                                            ...rest
-                                                          }: Props<T>) => {
-
-  const { field: { value, onChange } } = useController({
+  name,
+  control,
+  disabled,
+  shouldUnregister,
+  ...rest
+}: Props<T>) => {
+  const {
+    field: { value, onChange },
+  } = useController({
     control,
     name,
-    disabled, shouldUnregister
+    disabled,
+    shouldUnregister,
   });
 
-  return <CustomCheckbox checked={value} disabled={disabled} onCheckedChange={onChange}
-                         label={"Remember Me"} {...rest} />;
+  return (
+    <CustomCheckbox
+      checked={value}
+      disabled={disabled}
+      onCheckedChange={onChange}
+      label={"Remember Me"}
+      {...rest}
+    />
+  );
 };
 
 // type Props = {
@@ -42,4 +58,3 @@ export const ControlledCheckbox = <T extends FieldValues>({
 //   return <CustomCheckbox checked={value}  onCheckedChange={onChange}
 //                          label={"Remember Me"} {...rest} />;
 // };
-

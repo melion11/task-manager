@@ -10,6 +10,6 @@ import { App } from "./app/App.tsx";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-      <App />
+    <App />
   </StrictMode>,
 );

@@ -1,28 +1,34 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
 
-import * as Checkbox from '@radix-ui/react-checkbox'
-import { clsx } from 'clsx'
+import * as Checkbox from "@radix-ui/react-checkbox";
+import { clsx } from "clsx";
 
+import s from "./checkbox.module.scss";
 
-import s from './checkbox.module.scss'
 import { Check } from "@/shared/assets";
 import { Label } from "@/shared/ui/Label";
 import { Typography } from "@/shared/ui/Typography";
 
 export type CheckboxProps = {
-  id?: string
-  label?: string
-} & ComponentPropsWithoutRef<typeof Checkbox.Root>
+  id?: string;
+  label?: string;
+} & ComponentPropsWithoutRef<typeof Checkbox.Root>;
 
-export const CustomCheckbox = forwardRef<ElementRef<typeof Checkbox.Root>, CheckboxProps>(
-  ({ id, label, disabled, checked, required, onCheckedChange }: CheckboxProps, ref) => {
+export const CustomCheckbox = forwardRef<
+  ElementRef<typeof Checkbox.Root>,
+  CheckboxProps
+>(
+  (
+    { id, label, disabled, checked, required, onCheckedChange }: CheckboxProps,
+    ref,
+  ) => {
     const classNames = {
       wrapper: clsx(s.wrapper),
       root: clsx(s.checkboxRoot),
       indicator: clsx(s.checkboxIndicator),
       label: s.label,
       buttonWrapper: s.buttonWrapper,
-    }
+    };
 
     return (
       <div className={classNames.wrapper}>
@@ -42,11 +48,11 @@ export const CustomCheckbox = forwardRef<ElementRef<typeof Checkbox.Root>, Check
               </Checkbox.Indicator>
             </Checkbox.Root>
           </div>
-          <Typography as={'label'} variant={'body2'}>
+          <Typography as={"label"} variant={"body2"}>
             {label}
           </Typography>
         </Label>
       </div>
-    )
-  }
-)
+    );
+  },
+);

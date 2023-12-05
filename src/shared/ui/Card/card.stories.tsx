@@ -1,28 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Card } from "@/shared/ui/Card/card.tsx";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Button } from "@/shared/ui";
+import { Card } from "@/shared/ui/Card/card.tsx";
 import { Typography } from "@/shared/ui/Typography";
 
-
-
 const meta = {
-  title: 'shared/Card',
+  title: "shared/Card",
   component: Card,
-  tags: ['autodocs'],
-} satisfies Meta<typeof Card>
+  tags: ["autodocs"],
+} satisfies Meta<typeof Card>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     children: (
       <>
-        <Typography variant={'h2'}>Login In</Typography>
-        <Button variant={'primary'} fullWidth={false} onClick={() => {}}>
+        <Typography variant={"h2"}>Login In</Typography>
+        <Button variant={"primary"} fullWidth={false} onClick={() => {}}>
           Button
         </Button>
       </>
     ),
   },
-}
+};

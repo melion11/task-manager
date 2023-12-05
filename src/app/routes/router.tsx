@@ -1,41 +1,53 @@
-import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
+
 import { Layout } from "@/components/Layout";
+import { useMeQuery } from "@/features";
 import { LoginPage, NotFoundPage, TodosPage } from "@/pages";
+import { PageLoader } from "@/widgets";
 
 function PrivateRoutes() {
+  const { data, isLoading } = useMeQuery();
 
-  const isAuthenticated = false
+  const isAuthenticated = data?.resultCode;
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
+  if (isLoading) return <PageLoader />;
+
+  return isAuthenticated === 0 ? <Outlet /> : <Navigate to="/login" />;
 }
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
         element: <PrivateRoutes />,
         children: [
           {
-            path: '/*',
+            path: "/*",
             element: <NotFoundPage />,
           },
           {
-            path: '/',
+            path: "/",
             element: <TodosPage />,
           },
         ],
       },
       {
-        path: '/login',
+        path: "/login",
         element: <LoginPage />,
-      }
+      },
     ],
   },
-])
+]);
 
 export const Router = () => {
+  const {} = useMeQuery();
 
-  return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};
