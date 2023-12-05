@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { z } from "zod";
 import { ControlledCheckbox } from "@/shared/controlled/ControlledCheckbox/ControlledCheckbox.tsx";
-
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -30,7 +30,8 @@ export const LoginForm = () => {
       email: "",
       password: "",
       rememberMe: false
-    }
+    },
+    resolver: zodResolver(loginSchema)
   });
 
   const onSubmitHandler = (data: FormValues) => {
@@ -47,7 +48,7 @@ export const LoginForm = () => {
             <Typography variant={"h1"} as={"h1"} className={s.loginTitle}>Sign in</Typography>
             <TextField {...register("email")}
                        errorMessage={errors.email?.message}
-                       label={"Username"} />
+                       label={"Email"} />
             <TextField {...register("password")}
                        errorMessage={errors.password?.message}
                        label={"Password"}
