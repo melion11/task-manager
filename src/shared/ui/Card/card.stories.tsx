@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Typography } from '../typography'
 import { Card } from "@/shared/ui/Card/card.tsx";
 import { Button } from "@/shared/ui";
+import { Typography } from "@/shared/ui/Typography";
 
 
 
 const meta = {
-  title: 'components/Card',
+  title: 'shared/Card',
   component: Card,
   tags: ['autodocs'],
 } satisfies Meta<typeof Card>

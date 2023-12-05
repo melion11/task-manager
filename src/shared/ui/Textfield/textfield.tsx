@@ -3,10 +3,10 @@ import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useState } from 'rea
 import { clsx } from 'clsx'
 
 
-import s from './textfield.module.scss'
 import { Typography } from "@/shared/ui/Typography";
 import { Label } from "@/shared/ui/Label";
 import { EyeOff, EyeOn, Search } from "@/shared/assets";
+import s from './textfield.module.scss'
 
 type TextFieldProps = {
   label?: string

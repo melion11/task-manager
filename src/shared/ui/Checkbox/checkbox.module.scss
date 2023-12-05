@@ -46,12 +46,12 @@
   width: 18px;
   height: 18px;
 
-  background-color: var(--color-dark-900);
+  background-color: transparent;
   border: 2px solid var(--color-light-900);
   border-radius: 2px;
 
   &:focus {
-    background-color: var(--color-dark-900);
+    background-color: transparent;
   }
 
   &:disabled {
@@ -67,4 +67,5 @@
 .checkboxIndicator {
   width: 18px;
   height: 18px;
+
 }

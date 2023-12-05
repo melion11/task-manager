@@ -9,7 +9,7 @@ import { Check } from "@/shared/assets";
 import { Label } from "@/shared/ui/Label";
 import { Typography } from "@/shared/ui/Typography";
 
-type CheckboxProps = {
+export type CheckboxProps = {
   id?: string
   label?: string
 } & ComponentPropsWithoutRef<typeof Checkbox.Root>

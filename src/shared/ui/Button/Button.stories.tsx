@@ -5,7 +5,7 @@ import {Logout} from '@/shared/assets/icons'
 
 
 const meta = {
-  title: 'Components/Button',
+  title: 'shared/Button',
   component: Button,
   tags: ['autodocs'],
 } satisfies Meta<typeof Button>
