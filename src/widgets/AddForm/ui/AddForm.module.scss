@@ -1,6 +1,7 @@
 .addForm {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .textField {
@@ -12,7 +13,7 @@
     width: 30px;
     height: 30px;
   }
-
+  transition: 0.2s ease-in-out;
   &:hover {
     color: var(--color-accent-500);
   }

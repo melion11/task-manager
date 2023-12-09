@@ -2,7 +2,7 @@ import s from "./Task.module.scss";
 
 import { Trash } from "@/shared/assets";
 import { CustomCheckbox } from "@/shared/ui/Checkbox";
-import { Typography } from "@/shared/ui/Typography";
+import { EditableSpan } from "@/widgets/EditableSpan";
 
 type TaskProps = {
   description?: string;
@@ -23,7 +23,7 @@ export const Task = ({ title }: TaskProps) => {
     <li className={s.task}>
       <div className={s.checkWrap}>
         <CustomCheckbox />
-        <Typography variant={"subtitle1"}>{title}</Typography>
+        <EditableSpan onChange={() => {}} title={title} />
       </div>
       <button className={s.deleteTask}>
         <Trash />
