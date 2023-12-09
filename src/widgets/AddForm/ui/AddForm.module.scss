@@ -1,0 +1,19 @@
+.addForm {
+  display: flex;
+  align-items: flex-end;
+}
+
+.textField {
+  flex-grow: 1;
+}
+
+.addBtn {
+  & > svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover {
+    color: var(--color-accent-500);
+  }
+}

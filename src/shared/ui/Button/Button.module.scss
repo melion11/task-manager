@@ -124,6 +124,10 @@
   }
 }
 
+.clear {
+  @include buttonStyles;
+}
+
 .fullWidth {
   width: 100%;
   text-align: center;

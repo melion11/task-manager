@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import s from "./Button.module.scss";
 
 export type ButtonProps<T extends ElementType = "button"> = {
-  variant?: "primary" | "secondary" | "tertiary" | "link";
+  variant?: "primary" | "secondary" | "tertiary" | "link" | "clear";
   fullWidth?: boolean;
   as?: T;
   children?: ReactNode;

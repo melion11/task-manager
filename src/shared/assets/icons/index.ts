@@ -4,3 +4,5 @@ export { default as Delete } from "./delete.tsx";
 export { default as EyeOff } from "./eyeOff.tsx";
 export { default as EyeOn } from "./eyeOn.tsx";
 export { default as Search } from "./search.tsx";
+export { default as Trash } from "./trash.tsx";
+export { default as Add } from "./add.tsx";

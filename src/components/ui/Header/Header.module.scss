@@ -1,7 +1,27 @@
+.header {
+  background-color: #171717;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.95;
+  z-index: 9999;
+  max-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .headerWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  & > button {
+    @media screen and (max-width: 360px) {
+      max-width: 140px;
+    }
+  }
 }
 
 .logoLink {
@@ -9,6 +29,12 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+
+  & > h1 {
+    @media screen and (max-width: 360px) {
+      font-size: var(--font-size-l);
+    }
+  }
 }
 
 .pictureWrap {
@@ -18,6 +44,6 @@
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  max-width: 60px;
+  max-height: 60px;
 }

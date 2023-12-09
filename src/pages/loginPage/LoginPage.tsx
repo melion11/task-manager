@@ -2,8 +2,8 @@ import { Navigate } from "react-router-dom";
 
 import s from "./LoginPage.module.scss";
 
-import { useGetLogInMutation, useMeQuery } from "@/features";
-import { FormValues, LoginForm } from "@/features/ui/LoginForm/LoginForm.tsx";
+import { useGetLogInMutation, useMeQuery } from "@/features/auth/api";
+import { FormValues, LoginForm } from "@/features/auth/ui";
 import { PageLoader } from "@/widgets";
 
 export const LoginPage = () => {

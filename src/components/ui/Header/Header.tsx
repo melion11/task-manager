@@ -20,7 +20,7 @@ export const Header = () => {
   };
 
   return (
-    <header>
+    <header className={s.header}>
       <div className={"container"}>
         <div className={s.headerWrapper}>
           <Link to={"/"} className={s.logoLink}>
@@ -29,7 +29,9 @@ export const Header = () => {
               <source srcSet={logoPng} type="image/png" />
               <img className={s.logo} src={logoPng} alt="logo" />
             </picture>
-            <Typography variant={"h1"}>Task manager</Typography>
+            <Typography variant={"h1"} className={s.title} as={"h1"}>
+              Task manager
+            </Typography>
           </Link>
           {data?.resultCode === 0 ? (
             <Button onClick={getLogoutHandler} variant={"secondary"}>

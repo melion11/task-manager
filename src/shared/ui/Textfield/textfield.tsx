@@ -44,7 +44,6 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         s.field,
         !!errorMessage && s.error,
         search && s.hasSearchIcon,
-        className,
       ),
       label: clsx(s.label, disabled && s.disabled, className),
       password: clsx(s.password, disabled && s.disabled),
@@ -67,7 +66,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const isShowButtonPassword = type === "password";
 
     return (
-      <Label label={labelJSX}>
+      <Label label={labelJSX} className={className}>
         <div className={classNames.rootBlock}>
           {search && <Search className={classNames.searchIcon} />}
           <input
