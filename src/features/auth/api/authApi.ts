@@ -4,7 +4,7 @@ import {
   LoginResponseData,
   MeResponseData,
   ResponseAuth,
-} from "@/features/api/authApi.types.ts";
+} from "@/features/auth/api/authApi.types.ts";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
