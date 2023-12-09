@@ -11,7 +11,7 @@ import { Button } from "@/shared/ui";
 import { Typography } from "@/shared/ui/Typography";
 
 export const Header = () => {
-  const { data } = useMeQuery();
+  const { data, isLoading } = useMeQuery();
 
   const [logout] = useGetLogoutMutation();
 
@@ -20,28 +20,32 @@ export const Header = () => {
   };
 
   return (
-    <header className={s.header}>
-      <div className={"container"}>
-        <div className={s.headerWrapper}>
-          <Link to={"/"} className={s.logoLink}>
-            <picture className={s.pictureWrap}>
-              <source srcSet={logoWebp} type="image/webp" />
-              <source srcSet={logoPng} type="image/png" />
-              <img className={s.logo} src={logoPng} alt="logo" />
-            </picture>
-            <Typography variant={"h1"} className={s.title} as={"h1"}>
-              Task manager
-            </Typography>
-          </Link>
-          {data?.resultCode === 0 ? (
-            <Button onClick={getLogoutHandler} variant={"secondary"}>
-              <Logout /> Log Out
-            </Button>
-          ) : (
-            <Button variant={"primary"}>Sign In</Button>
-          )}
-        </div>
-      </div>
-    </header>
+    <>
+      {!isLoading && (
+        <header className={s.header}>
+          <div className={"container"}>
+            <div className={s.headerWrapper}>
+              <Link to={"/"} className={s.logoLink}>
+                <picture className={s.pictureWrap}>
+                  <source srcSet={logoWebp} type="image/webp" />
+                  <source srcSet={logoPng} type="image/png" />
+                  <img className={s.logo} src={logoPng} alt="logo" />
+                </picture>
+                <Typography variant={"h1"} className={s.title} as={"h1"}>
+                  Task manager
+                </Typography>
+              </Link>
+              {data?.resultCode === 0 ? (
+                <Button onClick={getLogoutHandler} variant={"secondary"}>
+                  <Logout /> Log Out
+                </Button>
+              ) : (
+                <Button variant={"primary"}>Sign In</Button>
+              )}
+            </div>
+          </div>
+        </header>
+      )}
+    </>
   );
 };

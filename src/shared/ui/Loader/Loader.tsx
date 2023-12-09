@@ -8,7 +8,7 @@ type LoaderProps = {
 
 export const Loader = ({ className }: LoaderProps) => {
   return (
-    <div className={clsx(s["lds-facebook"], {}, [className])}>
+    <div className={clsx(s["lds-facebook"], className)}>
       <div></div>
       <div></div>
       <div></div>

@@ -47,7 +47,7 @@
   height: 18px;
 
   background-color: transparent;
-  border: 2px solid var(--color-light-900);
+
   border-radius: 2px;
 
   &:focus {
@@ -62,9 +62,13 @@
   &[data-state="checked"]:disabled {
     background-color: var(--color-dark-300);
   }
+  &[data-state="unchecked"] {
+    border: 2px solid var(--color-light-900);
+  }
 }
 
 .checkboxIndicator {
   width: 18px;
   height: 18px;
+  color: #ffffff;
 }

@@ -10,7 +10,7 @@ type PageLoaderProps = {
 
 export const PageLoader = ({ className }: PageLoaderProps) => {
   return (
-    <div className={clsx(s.PageLoader, {}, [className])}>
+    <div className={clsx(s.PageLoader, className)}>
       <Loader />
     </div>
   );

@@ -1,0 +1,20 @@
+.task {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.checkWrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.deleteTask {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-accent-500);
+  }
+}

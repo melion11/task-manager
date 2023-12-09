@@ -1,0 +1,38 @@
+.todoWrap {
+  height: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 25px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 100px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  .deleteTodo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &:hover {
+      color: var(--color-accent-500);
+    }
+  }
+}
+
+.filterButtons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filterBtn {
+  flex: 1;
+}
