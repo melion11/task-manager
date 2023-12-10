@@ -1,4 +1,3 @@
-import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -43,34 +42,27 @@ export const LoginForm = ({ onSubmit, isLoading }: LoginFormProps) => {
   };
 
   return (
-    <>
-      <DevTool control={control} />
-
-      <div className={s.LoginForm}>
-        <Card className={s.loginWrapper}>
-          <form
-            className={s.LoginForm}
-            onSubmit={handleSubmit(onSubmitHandler)}
-          >
-            <Typography variant={"h1"} as={"h1"} className={s.loginTitle}>
-              Sign in
-            </Typography>
-            <TextField
-              {...register("email")}
-              errorMessage={errors.email?.message}
-              label={"Email"}
-            />
-            <TextField
-              {...register("password")}
-              errorMessage={errors.password?.message}
-              label={"Password"}
-              type={"password"}
-            />
-            <ControlledCheckbox control={control} name={"rememberMe"} />
-            <Button disabled={isLoading}>Sign In</Button>
-          </form>
-        </Card>
-      </div>
-    </>
+    <div className={s.LoginForm}>
+      <Card className={s.loginWrapper}>
+        <form className={s.LoginForm} onSubmit={handleSubmit(onSubmitHandler)}>
+          <Typography variant={"h1"} as={"h1"} className={s.loginTitle}>
+            Sign in
+          </Typography>
+          <TextField
+            {...register("email")}
+            errorMessage={errors.email?.message}
+            label={"Email"}
+          />
+          <TextField
+            {...register("password")}
+            errorMessage={errors.password?.message}
+            label={"Password"}
+            type={"password"}
+          />
+          <ControlledCheckbox control={control} name={"rememberMe"} />
+          <Button disabled={isLoading}>Sign In</Button>
+        </form>
+      </Card>
+    </div>
   );
 };

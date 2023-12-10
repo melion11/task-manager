@@ -1,3 +1,5 @@
+import { AnimatePresence, motion } from "framer-motion";
+
 import s from "./TodosPage.module.scss";
 
 import { useCreateTodoMutation, useGetTodosQuery } from "@/features/todos/api";
@@ -14,7 +16,17 @@ export const TodosPage = () => {
   };
 
   const todosElements = data?.map((t) => {
-    return <Todo key={t.id} id={t.id} title={t.title} />;
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        layout
+        key={t.id}
+      >
+        <Todo key={t.id} id={t.id} title={t.title} />
+      </motion.div>
+    );
   });
 
   if (isLoading) return <PageLoader />;
@@ -23,7 +35,9 @@ export const TodosPage = () => {
     <section className={s.TodosPage}>
       <div className={"container"}>
         <AddForm onSubmit={onCreateTodoHandler} placeholder={"Add New Todo"} />
-        <ul className={s.todosList}>{todosElements}</ul>
+        <ul className={s.todosList}>
+          <AnimatePresence>{todosElements}</AnimatePresence>
+        </ul>
       </div>
     </section>
   );
