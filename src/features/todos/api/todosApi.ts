@@ -2,6 +2,7 @@ import { baseApi } from "@/app/api";
 import {
   ResponseTasks,
   ResponseTodo,
+  UpdateTaskModelType,
 } from "@/features/todos/api/todosApi.types.ts";
 import { AddFormValues } from "@/widgets/AddForm";
 
@@ -38,6 +39,32 @@ export const todosApi = baseApi.injectEndpoints({
       query: ({ id }) => `todo-lists/${id}/tasks`,
       providesTags: ["Tasks"],
     }),
+    createTask: builder.mutation<void, { id: string; data: AddFormValues }>({
+      query: ({ id, data }) => ({
+        url: `todo-lists/${id}/tasks`,
+        method: `POST`,
+        body: data,
+      }),
+      invalidatesTags: ["Tasks"],
+    }),
+    deleteTask: builder.mutation<void, { todoListId: string; taskId: string }>({
+      query: ({ todoListId, taskId }) => ({
+        url: `todo-lists/${todoListId}/tasks/${taskId}`,
+        method: `DELETE`,
+      }),
+      invalidatesTags: ["Tasks"],
+    }),
+    updateTask: builder.mutation<
+      void,
+      { todoListId: string; taskId: string; item: UpdateTaskModelType }
+    >({
+      query: ({ todoListId, taskId, item }) => ({
+        url: `todo-lists/${todoListId}/tasks/${taskId}`,
+        method: "PUT",
+        body: { ...item },
+      }),
+      invalidatesTags: ["Tasks"],
+    }),
   }),
 });
 
@@ -47,4 +74,7 @@ export const {
   useDeleteTodoMutation,
   useCreateTodoMutation,
   useUpdateTodoMutation,
+  useCreateTaskMutation,
+  useDeleteTaskMutation,
+  useUpdateTaskMutation,
 } = todosApi;

@@ -1,5 +1,7 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 
+import { clsx } from "clsx";
+
 import s from "./EditableSpan.module.scss";
 
 import { TextField } from "@/shared/ui";
@@ -8,9 +10,14 @@ import { Typography } from "@/shared/ui/Typography";
 type EditableSpanProps = {
   title?: string;
   onChange: (newTitle: string) => void;
+  status?: boolean;
 };
 
-export const EditableSpan = ({ title, onChange }: EditableSpanProps) => {
+export const EditableSpan = ({
+  title,
+  onChange,
+  status,
+}: EditableSpanProps) => {
   const [editMode, setEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
 
@@ -45,7 +52,12 @@ export const EditableSpan = ({ title, onChange }: EditableSpanProps) => {
           onKeyDown={onKeyDownHandler}
         />
       ) : (
-        <Typography onDoubleClick={onEditModeHandler} as={"h3"} variant={"h3"}>
+        <Typography
+          className={clsx(status && s.taskStatus)}
+          onDoubleClick={onEditModeHandler}
+          as={"h3"}
+          variant={"h3"}
+        >
           {title}
         </Typography>
       )}

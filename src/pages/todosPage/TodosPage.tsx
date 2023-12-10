@@ -12,6 +12,7 @@ export const TodosPage = () => {
   const onCreateTodoHandler = (data: AddFormValues) => {
     createTodo(data);
   };
+
   const todosElements = data?.map((t) => {
     return <Todo key={t.id} id={t.id} title={t.title} />;
   });
