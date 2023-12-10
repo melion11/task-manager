@@ -68,7 +68,7 @@ export const Todo = ({ id, title }: TodoProps) => {
   };
 
   return (
-    <Card className={s.todoWrap}>
+    <Card className={s.todoWrap} draggable>
       <button onClick={deleteTodoHandler} className={s.deleteTodo}>
         <Delete />
       </button>
