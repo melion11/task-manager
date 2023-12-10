@@ -1,6 +1,7 @@
 .todoWrap {
-  height: 100%;
-  max-width: 350px;
+  min-height: 100%;
+  max-width: 450px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,6 +10,7 @@
   border-radius: 5px;
   box-shadow: 2px 2px 100px 0 rgba(0, 0, 0, 0.2);
   position: relative;
+  flex-grow: 1;
 
   .deleteTodo {
     display: flex;
@@ -28,6 +30,12 @@
   }
 }
 
+.tasksWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .filterButtons {
   display: flex;
   align-items: center;
@@ -39,6 +47,6 @@
 }
 
 .activeFilter {
-  background-color: #8c61ff;
+  background-color: var(--color-accent-500);
   color: #fff;
 }

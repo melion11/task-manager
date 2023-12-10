@@ -1,8 +1,6 @@
 .todosList {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  width: 100%;
-  flex-grow: 1;
 }

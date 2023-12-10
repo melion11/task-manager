@@ -72,9 +72,11 @@ export const Todo = ({ id, title }: TodoProps) => {
       <button onClick={deleteTodoHandler} className={s.deleteTodo}>
         <Delete />
       </button>
-      <EditableSpan onChange={updateTodoHandler} title={title} />
-      <AddForm onSubmit={createTaskHandler} placeholder={"Add New Task"} />
-      <Tasks tasks={filteredTasks} />
+      <div className={s.tasksWrap}>
+        <EditableSpan onChange={updateTodoHandler} title={title} />
+        <AddForm onSubmit={createTaskHandler} placeholder={"Add New Task"} />
+        <Tasks tasks={filteredTasks} />
+      </div>
       <div className={s.filterButtons}>
         <Button
           variant={"tertiary"}
