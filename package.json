@@ -1,5 +1,6 @@
 {
   "name": "task-manager",
+  "homepage": "https://melion11.github.io/task-manager",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +11,9 @@
     "lint": "eslint --fix src/**/*.{tsx,ts,jsx,js} --no-error-on-unmatched-pattern && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
@@ -26,7 +29,8 @@
     "react-hook-form": "^7.46.1",
     "react-redux": "^9.0.1",
     "react-router-dom": "^6.15.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "gh-pages": "^6.0.0"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
