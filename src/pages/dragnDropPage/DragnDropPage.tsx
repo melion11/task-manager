@@ -20,14 +20,14 @@ export const DragnDropPage = () => {
 
   const [currentCard, setCurrentCard] = useState<CardType | null>(null);
 
-  const dragStartHandler = (e: DragEvent<HTMLDivElement>, card: CardType) => {
+  const dragStartHandler = (card: CardType) => {
     setCurrentCard(card);
   };
-  const dragEndHandler = (e: DragEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
-
-    target.style.backgroundColor = "#000";
-  };
+  // const dragEndHandler = (e: DragEvent<HTMLDivElement>) => {
+  //   const target = e.target as HTMLDivElement;
+  //
+  //   target.style.backgroundColor = "#000";
+  // };
   const dragOverHandler = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const target = e.target as HTMLDivElement;
@@ -76,9 +76,7 @@ export const DragnDropPage = () => {
                   key={card.id}
                   className={s.cardList}
                   draggable
-                  onDragStart={(e) => dragStartHandler(e, card)}
-                  onDragLeave={(e) => dragEndHandler(e)}
-                  onDragEnd={(e) => dragEndHandler(e)}
+                  onDragStart={() => dragStartHandler(card)}
                   onDragOver={(e) => dragOverHandler(e)}
                   onDrop={(e) => dropHandler(e, card)}
                 >
