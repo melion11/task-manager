@@ -22,5 +22,9 @@ export const useFilterTasks = (data: TaskType[] | undefined) => {
 
   const filteredTasks = priorityFilter(filter, data);
 
-  return { setFilter, filteredTasks, filter };
+  const onChangeFilterHandler = (filter: TaskStatuses) => {
+    setFilter(filter);
+  };
+
+  return { onChangeFilterHandler, filteredTasks, filter };
 };

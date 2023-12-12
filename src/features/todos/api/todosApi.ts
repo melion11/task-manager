@@ -35,6 +35,17 @@ export const todosApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Todos"],
     }),
+    reorderTodo: builder.mutation<
+      void,
+      { todolistId: string; putAfterItemId: string }
+    >({
+      query: ({ todolistId, putAfterItemId }) => ({
+        url: `/todo-lists/${todolistId}/reorder`,
+        method: "PUT",
+        body: { putAfterItemId },
+      }),
+      invalidatesTags: ["Todos"],
+    }),
     getTasks: builder.query<ResponseTasks, { id: string }>({
       query: ({ id }) => `todo-lists/${id}/tasks`,
       providesTags: ["Tasks"],
@@ -77,4 +88,5 @@ export const {
   useCreateTaskMutation,
   useDeleteTaskMutation,
   useUpdateTaskMutation,
+  useReorderTodoMutation,
 } = todosApi;

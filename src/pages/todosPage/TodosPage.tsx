@@ -3,20 +3,15 @@ import { NavLink } from "react-router-dom";
 
 import s from "./TodosPage.module.scss";
 
-import { useCreateTodoMutation, useGetTodosQuery } from "@/features/todos/api";
+import { useTodos } from "@/features/todos/hooks/useTodos.ts";
 import { Todo } from "@/features/todos/ui";
 import { PageLoader } from "@/widgets";
-import { AddForm, AddFormValues } from "@/widgets/AddForm";
+import { AddForm } from "@/widgets/AddForm";
 
 export const TodosPage = () => {
-  const { data, isLoading } = useGetTodosQuery();
-  const [createTodo, {}] = useCreateTodoMutation();
+  const { todos, isLoading, onCreateTodoHandler } = useTodos();
 
-  const onCreateTodoHandler = (data: AddFormValues) => {
-    createTodo(data);
-  };
-
-  const todosElements = data?.map((t) => {
+  const todosElements = todos?.map((t) => {
     return (
       <motion.div
         initial={{ opacity: 0 }}

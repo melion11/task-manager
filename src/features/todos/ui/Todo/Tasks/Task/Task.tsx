@@ -1,15 +1,12 @@
 import s from "./Task.module.scss";
 
-import {
-  useDeleteTaskMutation,
-  useUpdateTaskMutation,
-} from "@/features/todos/api";
 import { TaskStatuses } from "@/features/todos/api/todosApi.types.ts";
+import { useTasks } from "@/features/todos/hooks/useTasks.ts";
 import { Trash } from "@/shared/assets";
 import { CustomCheckbox } from "@/shared/ui/Checkbox";
 import { EditableSpan } from "@/widgets/EditableSpan";
 
-type TaskProps = {
+export type TaskProps = {
   description: string;
   title: string;
   completed?: boolean;
@@ -33,36 +30,17 @@ export const Task = ({
   priority,
   startDate,
 }: TaskProps) => {
-  const [deleteTask, {}] = useDeleteTaskMutation();
-  const [updateTask, {}] = useUpdateTaskMutation();
-  const deleteTaskHandler = () => {
-    deleteTask({ todoListId, taskId: id });
-  };
-
-  const taskForUpdate = {
-    status,
-    todoListId,
-    deadline,
-    description,
-    priority,
-    startDate,
-    title,
-  };
-
-  const updateTaskTitleHandler = (title: string) => {
-    updateTask({ todoListId, taskId: id, item: { ...taskForUpdate, title } });
-  };
-
-  const updateTaskStatus = (status: boolean) => {
-    updateTask({
+  const { updateTaskTitleHandler, deleteTaskHandler, updateTaskStatus } =
+    useTasks({
       todoListId,
-      taskId: id,
-      item: {
-        ...taskForUpdate,
-        status: status ? TaskStatuses.Completed : TaskStatuses.New,
-      },
+      id,
+      status,
+      deadline,
+      description,
+      priority,
+      startDate,
+      title,
     });
-  };
 
   return (
     <li className={s.task} draggable>

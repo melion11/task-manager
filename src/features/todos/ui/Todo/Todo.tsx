@@ -1,20 +1,18 @@
+import { DragEvent, useState } from "react";
+
 import { clsx } from "clsx";
 
 import s from "./Todo.module.scss";
 
-import {
-  useCreateTaskMutation,
-  useDeleteTodoMutation,
-  useGetTasksQuery,
-  useUpdateTodoMutation,
-} from "@/features/todos/api";
+import { useReorderTodoMutation } from "@/features/todos/api";
 import { TaskStatuses } from "@/features/todos/api/todosApi.types.ts";
 import { useFilterTasks } from "@/features/todos/hooks/useFilterTasks.ts";
+import { useTodos } from "@/features/todos/hooks/useTodos.ts";
 import { Tasks } from "@/features/todos/ui/Todo/Tasks/Tasks.tsx";
 import Delete from "@/shared/assets/icons/delete.tsx";
 import { Button } from "@/shared/ui";
 import { Card } from "@/shared/ui/Card";
-import { AddForm, AddFormValues } from "@/widgets/AddForm";
+import { AddForm } from "@/widgets/AddForm";
 import { EditableSpan } from "@/widgets/EditableSpan";
 
 type TodoProps = {
@@ -26,30 +24,49 @@ type TodoProps = {
 };
 
 export const Todo = ({ id, title, draggable }: TodoProps) => {
-  const { data } = useGetTasksQuery({ id });
-  const { filteredTasks, setFilter, filter } = useFilterTasks(data?.items);
-  const [deleteTodo, {}] = useDeleteTodoMutation();
-  const [updateTodo, {}] = useUpdateTodoMutation();
-  const [createTask, {}] = useCreateTaskMutation();
+  const { data, createTaskHandler, deleteTodoHandler, updateTodoHandler } =
+    useTodos(id);
+  const { filteredTasks, onChangeFilterHandler, filter } = useFilterTasks(data);
 
-  const deleteTodoHandler = () => {
-    deleteTodo({ id });
+  const [reorderTodo, {}] = useReorderTodoMutation();
+
+  const [currentTodo, setCurrentTodo] = useState<string>("");
+
+  const onDragStartHandler = () => {
+    setCurrentTodo(id);
+  };
+  const onDragEndHandler = (e: DragEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement;
+
+    target.style.opacity = "1";
   };
 
-  const updateTodoHandler = (title: string) => {
-    updateTodo({ id, title });
+  const onDragOverHandler = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const target = e.target as HTMLDivElement;
+
+    target.style.opacity = "0.8";
   };
 
-  const createTaskHandler = (data: AddFormValues) => {
-    createTask({ id, data });
-  };
+  const onDropHandler = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const target = e.target as HTMLDivElement;
 
-  const onChangeFilterHandler = (filter: TaskStatuses) => {
-    setFilter(filter);
+    target.style.opacity = "1";
+
+    reorderTodo({ todolistId: id, putAfterItemId: currentTodo });
   };
 
   return (
-    <Card className={s.todoWrap} draggable={draggable}>
+    <Card
+      className={s.todoWrap}
+      draggable={draggable}
+      onDragStart={onDragStartHandler}
+      onDragOver={(e) => onDragOverHandler(e)}
+      onDragEnd={(e) => onDragEndHandler(e)}
+      onDragLeave={(e) => onDragEndHandler(e)}
+      onDrop={(e) => onDropHandler(e)}
+    >
       <button onClick={deleteTodoHandler} className={s.deleteTodo}>
         <Delete />
       </button>
