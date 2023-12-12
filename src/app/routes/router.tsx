@@ -8,6 +8,7 @@ import {
 import { Layout } from "@/components/Layout";
 import { useMeQuery } from "@/features";
 import { LoginPage, NotFoundPage, TodosPage } from "@/pages";
+import { DragnDropPage } from "@/pages/dragnDropPage";
 import { PageLoader } from "@/widgets";
 
 function PrivateRoutes() {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           {
             path: "/",
             element: <TodosPage />,
+          },
+          {
+            path: "/dragndrop",
+            element: <DragnDropPage />,
           },
         ],
       },

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { clsx } from "clsx";
 
 import s from "./Todo.module.scss";
@@ -10,7 +8,8 @@ import {
   useGetTasksQuery,
   useUpdateTodoMutation,
 } from "@/features/todos/api";
-import { TaskStatuses, TaskType } from "@/features/todos/api/todosApi.types.ts";
+import { TaskStatuses } from "@/features/todos/api/todosApi.types.ts";
+import { useFilterTasks } from "@/features/todos/hooks/useFilterTasks.ts";
 import { Tasks } from "@/features/todos/ui/Todo/Tasks/Tasks.tsx";
 import Delete from "@/shared/assets/icons/delete.tsx";
 import { Button } from "@/shared/ui";
@@ -23,11 +22,12 @@ type TodoProps = {
   title: string;
   addedDate?: string;
   order?: number;
+  draggable?: boolean;
 };
 
-export const Todo = ({ id, title }: TodoProps) => {
+export const Todo = ({ id, title, draggable }: TodoProps) => {
   const { data } = useGetTasksQuery({ id });
-
+  const { filteredTasks, setFilter, filter } = useFilterTasks(data?.items);
   const [deleteTodo, {}] = useDeleteTodoMutation();
   const [updateTodo, {}] = useUpdateTodoMutation();
   const [createTask, {}] = useCreateTaskMutation();
@@ -44,31 +44,12 @@ export const Todo = ({ id, title }: TodoProps) => {
     createTask({ id, data });
   };
 
-  const [filter, setFilter] = useState<TaskStatuses>(TaskStatuses.All);
-  const priorityFilter = (
-    filter: TaskStatuses,
-    tasks: TaskType[] | undefined,
-  ) => {
-    switch (filter) {
-      case TaskStatuses.New: {
-        return tasks?.filter((task) => task.status === TaskStatuses.New);
-      }
-      case TaskStatuses.Completed: {
-        return tasks?.filter((task) => task.status === TaskStatuses.Completed);
-      }
-      default:
-        return tasks;
-    }
-  };
-
-  const filteredTasks = priorityFilter(filter, data?.items);
-
   const onChangeFilterHandler = (filter: TaskStatuses) => {
     setFilter(filter);
   };
 
   return (
-    <Card className={s.todoWrap} draggable>
+    <Card className={s.todoWrap} draggable={draggable}>
       <button onClick={deleteTodoHandler} className={s.deleteTodo}>
         <Delete />
       </button>

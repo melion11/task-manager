@@ -65,7 +65,7 @@ export const Task = ({
   };
 
   return (
-    <li className={s.task}>
+    <li className={s.task} draggable>
       <div className={s.checkWrap}>
         <CustomCheckbox
           onCheckedChange={updateTaskStatus}
