@@ -34,7 +34,7 @@ const router = createBrowserRouter([
             element: <NotFoundPage />,
           },
           {
-            path: "/",
+            path: "/task-manager",
             element: <TodosPage />,
           },
           {

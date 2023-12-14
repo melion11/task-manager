@@ -6,7 +6,6 @@ import {
   useCreateTaskMutation,
   useCreateTodoMutation,
   useDeleteTodoMutation,
-  useGetTasksQuery,
   useGetTodosQuery,
   useUpdateTodoMutation,
 } from "@/features/todos/api";
@@ -14,12 +13,11 @@ import { setTodos } from "@/features/todos/slice/todoSlice.ts";
 import { AddFormValues } from "@/widgets/AddForm";
 
 export const useTodos = (id: string = "") => {
-  const { data: tasks } = useGetTasksQuery({ id });
   const [deleteTodo, {}] = useDeleteTodoMutation();
   const [updateTodo, {}] = useUpdateTodoMutation();
   const [createTask, {}] = useCreateTaskMutation();
 
-  const { data: todos, isLoading } = useGetTodosQuery();
+  const { data: todos, isLoading: isLoadingTodos } = useGetTodosQuery();
   const [createTodo, {}] = useCreateTodoMutation();
 
   const onCreateTodoHandler = (data: AddFormValues) => {
@@ -48,9 +46,8 @@ export const useTodos = (id: string = "") => {
     deleteTodoHandler,
     updateTodoHandler,
     createTaskHandler,
-    data: tasks?.items,
     todos,
-    isLoading,
+    isLoadingTodos,
     onCreateTodoHandler,
   };
 };

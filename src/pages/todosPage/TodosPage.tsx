@@ -9,7 +9,7 @@ import { PageLoader } from "@/widgets";
 import { AddForm } from "@/widgets/AddForm";
 
 export const TodosPage = () => {
-  const { todos, isLoading, onCreateTodoHandler } = useTodos();
+  const { todos, isLoadingTodos, onCreateTodoHandler } = useTodos();
 
   const todosElements = todos?.map((t) => {
     return (
@@ -25,17 +25,22 @@ export const TodosPage = () => {
     );
   });
 
-  if (isLoading) return <PageLoader />;
+  if (isLoadingTodos) return <PageLoader />;
 
   return (
-    <section className={s.TodosPage}>
-      <div className={"container"}>
-        <AddForm onSubmit={onCreateTodoHandler} placeholder={"Add New Todo"} />
-        <ul className={s.todosList}>
-          <AnimatePresence>{todosElements}</AnimatePresence>
-        </ul>
-        <NavLink to={"/dragndrop"}>dragndrop</NavLink>
-      </div>
-    </section>
+    <>
+      <section className={s.TodosPage}>
+        <div className={"container"}>
+          <AddForm
+            onSubmit={onCreateTodoHandler}
+            placeholder={"Add New Todo"}
+          />
+          <ul className={s.todosList}>
+            <AnimatePresence>{todosElements}</AnimatePresence>
+          </ul>
+          <NavLink to={"/dragndrop"}>dragndrop</NavLink>
+        </div>
+      </section>
+    </>
   );
 };

@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 import s from "./Todo.module.scss";
 
-import { useReorderTodoMutation } from "@/features/todos/api";
+import { useGetTasksQuery, useReorderTodoMutation } from "@/features/todos/api";
 import { TaskStatuses } from "@/features/todos/api/todosApi.types.ts";
 import { useFilterTasks } from "@/features/todos/hooks/useFilterTasks.ts";
 import { useTodos } from "@/features/todos/hooks/useTodos.ts";
@@ -24,9 +24,14 @@ type TodoProps = {
 };
 
 export const Todo = ({ id, title, draggable }: TodoProps) => {
-  const { data, createTaskHandler, deleteTodoHandler, updateTodoHandler } =
+  const { data: tasks } = useGetTasksQuery({ id });
+
+  const { createTaskHandler, deleteTodoHandler, updateTodoHandler } =
     useTodos(id);
-  const { filteredTasks, onChangeFilterHandler, filter } = useFilterTasks(data);
+
+  const { filteredTasks, onChangeFilterHandler, filter } = useFilterTasks(
+    tasks?.items,
+  );
 
   const [reorderTodo, {}] = useReorderTodoMutation();
 
