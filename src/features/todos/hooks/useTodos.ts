@@ -17,7 +17,7 @@ export const useTodos = (id: string = "") => {
   const [updateTodo, {}] = useUpdateTodoMutation();
   const [createTask, {}] = useCreateTaskMutation();
 
-  const { data: todos, isLoading: isLoadingTodos } = useGetTodosQuery();
+  const { currentData: todos, isLoading: isLoadingTodos } = useGetTodosQuery();
   const [createTodo, {}] = useCreateTodoMutation();
 
   const onCreateTodoHandler = (data: AddFormValues) => {

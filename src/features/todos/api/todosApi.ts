@@ -18,6 +18,19 @@ export const todosApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
+      onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+        const result = await queryFulfilled;
+
+        try {
+          dispatch(
+            todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+              draft.unshift(result.data);
+            }),
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      },
       invalidatesTags: ["Todos"],
     }),
     deleteTodo: builder.mutation<void, { id: string }>({
