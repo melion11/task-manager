@@ -1,27 +1,30 @@
-# React + TypeScript + Vite
+# Task-manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+https://melion11.github.io/task-manager
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Todolist is a simple and easy-to-use task management app to help you organise your day. It allows you to create to-do lists, helping you to be more organised and efficient.
+If you don't want to register, please enter the following details:
+- email: free@samuraijs.com
+- password: free
 
-## Expanding the ESLint configuration
+![](src/shared/assets/loginPage.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+There are main sections in the app. Here you can create a to-do list
+![](src/shared/assets/mainPage.png)
 
-- Configure the top-level `parserOptions` property like this:
+The project is under development.
+If you have questions or want to know something, you can write to [me](https://www.linkedin.com/in/ilya-grinyak/).
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+---
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Technologies:
+
+- React
+- TypeScript
+- Redux-Toolkit
+- Redux-Toolkit  
+- React-Router-Dom
+- React Hook From
+- SCSS Modules
+- Storybook
