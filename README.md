@@ -23,7 +23,7 @@ If you have questions or want to know something, you can write to [me](https://w
 - React
 - TypeScript
 - Redux-Toolkit
-- Redux-Toolkit  
+- Redux-Toolkit Query  
 - React-Router-Dom
 - React Hook From
 - SCSS Modules
