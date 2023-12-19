@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import logoPng from "../../../shared/assets/images/logo.png";
-import logoWebp from "../../../shared/assets/images/logo.webp";
+import logoPng from "../../shared/assets/images/logo.png";
+import logoWebp from "../../shared/assets/images/logo.webp";
 
 import s from "./Header.module.scss";
 

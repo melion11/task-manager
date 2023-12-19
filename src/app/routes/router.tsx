@@ -5,11 +5,20 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Layout } from "@/components/Layout";
 import { useMeQuery } from "@/features";
 import { LoginPage, NotFoundPage, TodosPage } from "@/pages";
 import { DragnDropPage } from "@/pages/dragnDropPage";
-import { PageLoader } from "@/widgets";
+import { PageLoader, Toast, Header } from "@/widgets";
+
+export const Layout = () => {
+  return (
+    <>
+      <Toast />
+      <Header />
+      <Outlet />
+    </>
+  );
+};
 
 function PrivateRoutes() {
   const { data, isLoading } = useMeQuery();
@@ -34,7 +43,7 @@ const router = createBrowserRouter([
             element: <NotFoundPage />,
           },
           {
-            path: "/task-manager",
+            path: "/",
             element: <TodosPage />,
           },
           {

@@ -1,12 +1,11 @@
-import { Provider } from "react-redux";
-
 import { Router } from "@/app/routes";
-import { store } from "@/app/store/store.ts";
+import { useMeQuery } from "@/features";
+import { PageLoader } from "@/widgets";
 
 export function App() {
-  return (
-    <Provider store={store}>
-      <Router />
-    </Provider>
-  );
+  const { isLoading } = useMeQuery();
+
+  if (isLoading) return <PageLoader />;
+
+  return <Router />;
 }

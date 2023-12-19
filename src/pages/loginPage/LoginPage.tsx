@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import s from "./LoginPage.module.scss";
 
@@ -11,8 +12,10 @@ export const LoginPage = () => {
 
   const { isLoading: isLoadingMe, data } = useMeQuery();
 
-  const onSubmitHandler = (data: FormValues) => {
-    getLogin(data);
+  const onSubmitHandler = async (data: FormValues) => {
+    await getLogin(data)
+      .unwrap()
+      .then((data) => toast.error(data.messages[0]));
   };
 
   if (data?.resultCode === 0) {
