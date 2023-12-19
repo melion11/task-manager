@@ -1,9 +1,9 @@
 import {
   useDeleteTaskMutation,
   useUpdateTaskMutation,
-} from "@/features/todos/api";
-import { TaskStatuses } from "@/features/todos/api/todosApi.types.ts";
-import { TaskProps } from "@/features/todos/ui/Todo/Tasks/Task";
+} from "@/features/tasks/api";
+import { TaskStatuses } from "@/features/tasks/api/tasksApi.types.ts";
+import { TaskProps } from "@/features/tasks/ui/Task";
 
 type UseTasksProps = Omit<TaskProps, "addedDate" | "completed" | "order">;
 

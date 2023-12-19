@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TaskStatuses, TaskType } from "@/features/todos/api/todosApi.types.ts";
+import { TaskStatuses, TaskType } from "@/features/tasks/api/tasksApi.types.ts";
 
 export const useFilterTasks = (data: TaskType[] | undefined) => {
   const [filter, setFilter] = useState<TaskStatuses>(TaskStatuses.All);

@@ -1,9 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { NavLink } from "react-router-dom";
 
 import s from "./TodosPage.module.scss";
 
-import { useTodos } from "@/features/todos/hooks/useTodos.ts";
+import { useTodos } from "@/features/todos/hooks";
 import { Todo } from "@/features/todos/ui";
 import { PageLoader } from "@/widgets";
 import { AddForm } from "@/widgets/AddForm";
@@ -38,7 +37,6 @@ export const TodosPage = () => {
           <ul className={s.todosList}>
             <AnimatePresence>{todosElements}</AnimatePresence>
           </ul>
-          <NavLink to={"/dragndrop"}>dragndrop</NavLink>
         </div>
       </section>
     </>

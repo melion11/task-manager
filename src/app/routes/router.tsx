@@ -7,8 +7,7 @@ import {
 
 import { useMeQuery } from "@/features";
 import { LoginPage, NotFoundPage, TodosPage } from "@/pages";
-import { DragnDropPage } from "@/pages/dragnDropPage";
-import { PageLoader, Toast, Header } from "@/widgets";
+import { Header, PageLoader, Toast } from "@/widgets";
 
 export const Layout = () => {
   return (
@@ -45,10 +44,6 @@ const router = createBrowserRouter([
           {
             path: "/",
             element: <TodosPage />,
-          },
-          {
-            path: "/dragndrop",
-            element: <DragnDropPage />,
           },
         ],
       },

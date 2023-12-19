@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import s from "./Tasks.module.scss";
 
-import { TaskType } from "@/features/todos/api/todosApi.types.ts";
-import { Task } from "@/features/todos/ui/Todo/Tasks/Task";
+import { TaskType } from "@/features/tasks/api/tasksApi.types.ts";
+import { Task } from "@/features/tasks/ui/Task";
 
 type TasksProps = {
   tasks?: TaskType[];

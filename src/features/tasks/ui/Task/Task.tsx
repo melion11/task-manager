@@ -1,7 +1,7 @@
 import s from "./Task.module.scss";
 
-import { TaskStatuses } from "@/features/todos/api/todosApi.types.ts";
-import { useTasks } from "@/features/todos/hooks/useTasks.ts";
+import { TaskStatuses } from "@/features/tasks/api/tasksApi.types.ts";
+import { useTasks } from "@/features/tasks/hooks/useTasks.ts";
 import { Trash } from "@/shared/assets";
 import { CustomCheckbox } from "@/shared/ui/Checkbox";
 import { EditableSpan } from "@/widgets/EditableSpan";
