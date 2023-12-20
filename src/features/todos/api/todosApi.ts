@@ -38,7 +38,24 @@ export const todosApi = baseApi.injectEndpoints({
         url: `todo-lists/${id}`,
         method: "DELETE",
       }),
-      // onQueryStarted: async () => {},
+      onQueryStarted: async (id, { dispatch, queryFulfilled }) => {
+        const patchResult = dispatch(
+          todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+            const findIndex = draft.findIndex((el) => el.id === id.id);
+
+            draft.splice(findIndex, 1);
+          }),
+        );
+
+        try {
+          await queryFulfilled;
+        } catch (e: unknown) {
+          const error: Error = e as Error;
+
+          patchResult.undo();
+          toast.error(error.message);
+        }
+      },
       invalidatesTags: ["Todos"],
     }),
     updateTodo: builder.mutation<void, { id: string; title: string }>({
@@ -47,6 +64,24 @@ export const todosApi = baseApi.injectEndpoints({
         method: "PUT",
         body: { title },
       }),
+      onQueryStarted: async ({ id, title }, { dispatch, queryFulfilled }) => {
+        const patchResult = dispatch(
+          todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+            const findIndex = draft.findIndex((el) => el.id === id);
+
+            draft[findIndex].title = title;
+          }),
+        );
+
+        try {
+          await queryFulfilled;
+        } catch (e: unknown) {
+          const error: Error = e as Error;
+
+          patchResult.undo();
+          toast.error(error.message);
+        }
+      },
       invalidatesTags: ["Todos"],
     }),
     reorderTodo: builder.mutation<
