@@ -4,13 +4,11 @@
   width: 350px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 24px;
   padding: 25px 10px;
   border-radius: 5px;
   box-shadow: 2px 2px 100px 0 rgba(0, 0, 0, 0.2);
   position: relative;
-  flex-grow: 1;
   cursor: grab;
 
   .deleteTodo {
@@ -24,7 +22,7 @@
     top: 0;
     right: 0;
     transition: 0.2s ease-in-out;
-
+    z-index: 9999;
     &:hover {
       color: var(--color-accent-500);
     }
@@ -32,15 +30,16 @@
 }
 
 .tasksWrap {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  height: 100%;
+  flex-grow: 1;
 }
 
 .tasksText {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  flex-grow: 1;
 }

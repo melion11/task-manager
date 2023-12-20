@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 import { baseApi } from "@/app/api";
 import { ResponseTodo } from "@/features/todos/api/todosApi.types.ts";
 import { AddFormValues } from "@/widgets/AddForm";
@@ -15,13 +17,19 @@ export const todosApi = baseApi.injectEndpoints({
         body,
       }),
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
-        const result = await queryFulfilled;
+        try {
+          const result = await queryFulfilled;
 
-        dispatch(
-          todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
-            draft.unshift(result.data);
-          }),
-        );
+          dispatch(
+            todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+              draft.unshift(result.data);
+            }),
+          );
+        } catch (e: unknown) {
+          const error: Error = e as Error;
+
+          toast.error(error.message);
+        }
       },
       invalidatesTags: ["Todos"],
     }),
