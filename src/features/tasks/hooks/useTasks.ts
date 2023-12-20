@@ -18,7 +18,7 @@ export const useTasks = (props: UseTasksProps) => {
     deadline,
     id,
   } = props;
-  const [deleteTask, {}] = useDeleteTaskMutation();
+  const [deleteTask, { isLoading: isDeletedTask }] = useDeleteTaskMutation();
   const [updateTask, {}] = useUpdateTaskMutation();
   const deleteTaskHandler = () => {
     deleteTask({ todoListId, taskId: id });
@@ -49,5 +49,10 @@ export const useTasks = (props: UseTasksProps) => {
     });
   };
 
-  return { updateTaskStatus, updateTaskTitleHandler, deleteTaskHandler };
+  return {
+    updateTaskStatus,
+    updateTaskTitleHandler,
+    deleteTaskHandler,
+    isDeletedTask,
+  };
 };

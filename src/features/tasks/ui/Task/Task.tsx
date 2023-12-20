@@ -30,17 +30,21 @@ export const Task = ({
   priority,
   startDate,
 }: TaskProps) => {
-  const { updateTaskTitleHandler, deleteTaskHandler, updateTaskStatus } =
-    useTasks({
-      todoListId,
-      id,
-      status,
-      deadline,
-      description,
-      priority,
-      startDate,
-      title,
-    });
+  const {
+    updateTaskTitleHandler,
+    deleteTaskHandler,
+    updateTaskStatus,
+    isDeletedTask,
+  } = useTasks({
+    todoListId,
+    id,
+    status,
+    deadline,
+    description,
+    priority,
+    startDate,
+    title,
+  });
 
   return (
     <li className={s.task} draggable>
@@ -55,7 +59,11 @@ export const Task = ({
           status={status === TaskStatuses.Completed}
         />
       </div>
-      <button onClick={deleteTaskHandler} className={s.deleteTask}>
+      <button
+        disabled={isDeletedTask}
+        onClick={deleteTaskHandler}
+        className={s.deleteTask}
+      >
         <Trash />
       </button>
     </li>

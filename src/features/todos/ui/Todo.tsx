@@ -21,7 +21,7 @@ type TodoProps = {
 };
 
 export const Todo = ({ id, title, draggable }: TodoProps) => {
-  const { data: tasks, isLoading } = useGetTasksQuery({ id });
+  const { currentData: tasks, isLoading } = useGetTasksQuery({ id });
 
   const {
     createTaskHandler,

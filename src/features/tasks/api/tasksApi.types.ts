@@ -1,3 +1,9 @@
+export type ResponseCreateTask<T> = {
+  data: T;
+  resultCode: 0 | 1 | 10;
+  messages: string[];
+};
+
 export type ResponseTasks = {
   items: TaskType[];
   totalCount: number;
@@ -18,6 +24,15 @@ export type TaskType = {
   addedDate: string;
 };
 
+export type UpdateTaskModelType = {
+  description: string;
+  title: string;
+  status: TaskStatuses;
+  priority: TaskPriorities;
+  startDate: string;
+  deadline: string;
+};
+
 export enum TaskStatuses {
   New = 0,
   InProgress = 1,
@@ -33,12 +48,3 @@ export enum TaskPriorities {
   Urgently = 3,
   Later = 4,
 }
-
-export type UpdateTaskModelType = {
-  title: string;
-  description: string;
-  status: TaskStatuses;
-  priority: TaskPriorities;
-  startDate: string;
-  deadline: string;
-};

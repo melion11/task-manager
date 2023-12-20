@@ -2,6 +2,7 @@
   margin: 0;
   font-style: normal;
   color: var(--color-light-100);
+  word-break: break-all;
 }
 
 @mixin typography($font-size, $font-weight, $line-height) {

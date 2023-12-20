@@ -17,4 +17,9 @@
   &:hover {
     color: var(--color-accent-500);
   }
+
+  &:disabled {
+    color: var(--color-dark-500);
+    opacity: 0.7;
+  }
 }
