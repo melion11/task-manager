@@ -19,7 +19,7 @@ export const useTodos = (id: string = "") => {
   const [createTask, {}] = useCreateTaskMutation();
 
   const { currentData: todos, isLoading: isLoadingTodos } = useGetTodosQuery();
-  const [createTodo, {}] = useCreateTodoMutation();
+  const [createTodo, { isLoading: isCreatedTodo }] = useCreateTodoMutation();
 
   const onCreateTodoHandler = (data: AddFormValues) => {
     createTodo(data);
@@ -79,6 +79,7 @@ export const useTodos = (id: string = "") => {
     todos,
     isLoadingTodos,
     onCreateTodoHandler,
+    isCreatedTodo,
     onDragStartHandler,
     onDragEndHandler,
     onDragOverHandler,

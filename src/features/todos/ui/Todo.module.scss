@@ -32,7 +32,15 @@
 }
 
 .tasksWrap {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.tasksText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }

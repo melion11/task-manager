@@ -30,6 +30,7 @@ export const todosApi = baseApi.injectEndpoints({
         url: `todo-lists/${id}`,
         method: "DELETE",
       }),
+      // onQueryStarted: async () => {},
       invalidatesTags: ["Todos"],
     }),
     updateTodo: builder.mutation<void, { id: string; title: string }>({

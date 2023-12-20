@@ -7,6 +7,8 @@ import { Tasks } from "@/features/tasks/ui/Tasks.tsx";
 import { useTodos } from "@/features/todos/hooks/useTodos.ts";
 import Delete from "@/shared/assets/icons/delete.tsx";
 import { Card } from "@/shared/ui/Card";
+import { Typography } from "@/shared/ui/Typography";
+import { PageLoader } from "@/widgets";
 import { AddForm } from "@/widgets/AddForm";
 import { EditableSpan } from "@/widgets/EditableSpan";
 
@@ -19,7 +21,7 @@ type TodoProps = {
 };
 
 export const Todo = ({ id, title, draggable }: TodoProps) => {
-  const { data: tasks } = useGetTasksQuery({ id });
+  const { data: tasks, isLoading } = useGetTasksQuery({ id });
 
   const {
     createTaskHandler,
@@ -34,6 +36,20 @@ export const Todo = ({ id, title, draggable }: TodoProps) => {
   const { filteredTasks, onChangeFilterHandler, filter } = useFilterTasks(
     tasks?.items,
   );
+
+  let contentComponent;
+
+  if (isLoading) {
+    contentComponent = <PageLoader />;
+  } else if (tasks?.totalCount) {
+    contentComponent = <Tasks tasks={filteredTasks} />;
+  } else {
+    contentComponent = (
+      <Typography variant="body1" className={s.tasksText}>
+        You haven`t added any tasks :(
+      </Typography>
+    );
+  }
 
   return (
     <Card
@@ -51,7 +67,7 @@ export const Todo = ({ id, title, draggable }: TodoProps) => {
       <div className={s.tasksWrap}>
         <EditableSpan onChange={updateTodoHandler} title={title} />
         <AddForm onSubmit={createTaskHandler} placeholder={"Add New Task"} />
-        <Tasks tasks={filteredTasks} />
+        {contentComponent}
       </div>
       <FilteredButtons filter={filter} onChange={onChangeFilterHandler} />
     </Card>

@@ -8,13 +8,14 @@ import { Loader } from "@/shared/ui/Loader/Loader.tsx";
 type PageLoaderProps = {
   className?: string;
   linear?: boolean;
+  height?: boolean;
 };
 
-export const PageLoader = ({ className, linear }: PageLoaderProps) => {
+export const PageLoader = ({ className, linear, height }: PageLoaderProps) => {
   return linear ? (
     <LinearLoader />
   ) : (
-    <div className={clsx(s.PageLoader, className)}>
+    <div className={clsx(s.PageLoader, height && s.height, className)}>
       <Loader />
     </div>
   );

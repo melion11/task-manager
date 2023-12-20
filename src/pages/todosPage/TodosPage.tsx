@@ -8,7 +8,8 @@ import { PageLoader } from "@/widgets";
 import { AddForm } from "@/widgets/AddForm";
 
 export const TodosPage = () => {
-  const { todos, isLoadingTodos, onCreateTodoHandler } = useTodos();
+  const { todos, isLoadingTodos, onCreateTodoHandler, isCreatedTodo } =
+    useTodos();
 
   const todosElements = todos?.map((t) => {
     return (
@@ -24,11 +25,12 @@ export const TodosPage = () => {
     );
   });
 
-  if (isLoadingTodos) return <PageLoader />;
+  if (isLoadingTodos) return <PageLoader height />;
 
   return (
     <>
       <section className={s.TodosPage}>
+        {isCreatedTodo && <PageLoader linear />}
         <div className={"container"}>
           <AddForm
             onSubmit={onCreateTodoHandler}

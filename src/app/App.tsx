@@ -5,7 +5,7 @@ import { PageLoader } from "@/widgets";
 export function App() {
   const { isLoading } = useMeQuery();
 
-  if (isLoading) return <PageLoader />;
+  if (isLoading) return <PageLoader height />;
 
   return <Router />;
 }
